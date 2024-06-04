@@ -7,20 +7,13 @@ const Todos = ({ todos, toggleCompleted, deleteTodo }) => {
     <div style={styles.container}>
       {todos.map((todo) => {
         return (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            // Teruskan function toggleCompleted ke component TodoItem
-            toggleCompleted={toggleCompleted}
-            // function deleteTodo
-            deleteTodo={deleteTodo}
-          />
+          <TodoItem key={todo.id} todo={todo} />
         )
       })}
     </div>
   )
 }
-  
+
   const styles = {
     container: {
       width: '40%',
