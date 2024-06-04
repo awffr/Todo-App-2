@@ -1,7 +1,12 @@
-import React from 'react'
+// Lakukan import hook "useContext" dari React dan "TodoContext" dari App.jsx
+import React, { useContext } from 'react'
+import { TodoContext } from '../App'
 
-// Menerima function toggleCompleted sebagai sebuah prop
-const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
+// Hapus toggleCompleted dan deleteTodo dari props
+const TodoItem = ({ todo }) => {
+  // Peroleh "toggleCompleted" dan "deleteTodo" dari TodoContext
+  const { toggleCompleted, deleteTodo } = useContext(TodoContext)
+
   const getTodoTitleStyle = () => {
     if (todo.completed === true) {
       return { textDecoration: 'line-through' }
@@ -9,7 +14,6 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
       return { textDecoration: 'none' }
     }
   }
-  
   
   return (
     <div style={styles.todoItem}>
@@ -19,10 +23,7 @@ const TodoItem = ({ todo, toggleCompleted, deleteTodo }) => {
         onChange={() => toggleCompleted(todo.id)}
       />
       <p style={getTodoTitleStyle()}>{todo.title}</p>
-      {/* Tambahkan sebuah button di sini */}
-      <button
-        style={styles.button}
-        onClick={() => deleteTodo(todo.id)}>
+      <button style={styles.button} onClick={() => deleteTodo(todo.id)}>
         x
       </button>
     </div>
